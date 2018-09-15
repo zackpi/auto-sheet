@@ -2,3 +2,4 @@ pip-selfcheck.json
 share/
 lib/
 bin/
+.vscode/
