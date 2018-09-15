@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-#import plotly.plotly as py
 import numpy as np
 # Learn about API authentication here: https://plot.ly/python/getting-started
 # Find your api_key here: https://plot.ly/settings/api
@@ -29,5 +28,4 @@ ax[1].set_xlabel('Freq (Hz)')
 ax[1].set_ylabel('|Y(freq)|')
 
 plt.show()
-#plot_url = py.plot_mpl(fig, filename='mpl-basic-fft')
 

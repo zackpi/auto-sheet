@@ -1,3 +1,4 @@
 abjad
 numpy
 matplotlib
+sounddevice
