@@ -1,4 +1,4 @@
 abjad
 numpy
-matplotlib
 sounddevice
+scipy
