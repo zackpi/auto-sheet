@@ -1,6 +1,6 @@
 from abjad import *
 
-def display(): 
+def display():
 	duration = Duration(1, 4)
 	notes = [Note(pitch, duration) for pitch in range(8)]
 	# [1, 2, 3, 4, 5, 6, 7]
