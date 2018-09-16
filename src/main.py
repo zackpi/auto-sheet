@@ -33,7 +33,7 @@ print('length =', len(transformed))
 # show_transformed(transformed)
 
 # identify peak frequencies
-peaks = identify_peaks(transformed, prominence=40)
+peaks = identify_peaks(transformed, height=5)
 show_peaks(transformed, peaks)
 
 # convert to sheet music
