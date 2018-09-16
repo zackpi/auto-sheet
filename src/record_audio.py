@@ -6,7 +6,7 @@ def flatten_array(array):
 		output.append(elem[0])
 	return output
 
-def record(duration=5, fs=44100):
+def record(duration=5, fs=40000):
 	import sounddevice as sd
 	recording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
 	sd.wait()

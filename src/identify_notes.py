@@ -7,40 +7,39 @@ note_lut = [('c0',), ('c#0', 'db0'), ('d0',), ('d#0', 'eb0'), ('e0',), ('f0',), 
 # fundamental frequencies of notes
 freq_lut = [16, 17, 18, 19, 20, 21, 23, 24, 25, 27, 29, 30, 32, 34, 36, 38, 41, 43, 46, 49, 51, 55, 58, 61, 65, 69, 73, 77, 82, 87, 92, 98, 103, 110, 116, 123, 130, 138, 146, 155, 164, 174, 185, 196, 207, 220, 233, 246, 261, 277, 293, 311, 329, 349, 369, 392, 415, 440, 466, 493, 523, 554, 587, 622, 659, 698, 739, 783, 830, 880, 932, 987, 1046, 1108, 1174, 1244, 1318, 1396, 1479, 1567, 1661, 1760, 1864, 1975, 2093, 2217, 2349, 2489, 2637, 2793, 2959, 3135, 3322, 3520, 3729, 3951, 4186, 4434, 4698, 4978]
 
-
 # return the peaks in the frequency domain
-def peak_freq(fft, **kwargs):
+def peak_freqs(fft, **kwargs):
     peaks,_ = find_peaks(fft, **kwargs)
     return peaks
 
+def identify_peaks(fft_chunks, **kwargs): 
+    return [peak_freqs(chunk, **kwargs) for chunk in fft_chunks]
 
-# map peak freq to closest note
+# map peak frequency to closest note
 def freq_to_note(freq):
     index = 0
-    while freq_lut[index] < freq:
+    while index < len(freq_lut) and freq_lut[index] < freq:
         index += 1
-    
+
+    if index == len(freq_lut):
+        return ('',)
+
     if freq_lut[index] - freq > freq - freq_lut[index-1]:
         index -= 1
     return note_lut[index]
 
-
 # convert all chunks' peaks to notes
-def convert_freqs_to_notes(fft_chunks):
+def identify_notes(peak_chunks):
     note_chunks = []
-    for fft_chunk in fft_chunks:
-    
+    for peak_chunk in peak_chunks:
         note_chunk = []
-        for peak in fft_chunk:
+        for peak in peak_chunk:
             note_chunk.append(freq_to_note(peak))
         note_chunks.append(note_chunk)
-    
     return note_chunks
         
-
-if __name__=="__main__":
+if __name__ == "__main__":
     from scipy.misc import electrocardiogram as ec
-    
     peaks = peak_find(ec()[2000:4000])
     #notes = note_map(peaks)
     print(peaks)

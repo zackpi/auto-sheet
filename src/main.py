@@ -1,15 +1,22 @@
-import record_audio, fourier_transform, identify_notes, build_score
+from record_audio import * 
+from fourier_transform import * 
+from identify_notes import * 
+from build_score import * 
 
-# # record audio 
-# recording = record() 
+# record audio 
+recording = record(duration=5) 
+# print('recording =', recording[250:500])
 
-# # fourier transform 
-# transformed = fourier(recording) 
+# fourier transform 
+transformed = fourier(recording) 
+# print('transformed =', transformed[250:500])
 
-# # identify_notes 
-# notes = convert_freqs_to_notes(transformed)
+# identify_notes
+peaks = identify_peaks(transformed)
+notes = identify_notes(peaks)
+print('notes =', notes)
 
-# # transcribe 
+# transcribe 
 # display(notes)
 
 
