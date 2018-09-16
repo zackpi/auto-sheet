@@ -3,3 +3,4 @@ share/
 lib/
 bin/
 .vscode/
+include/
