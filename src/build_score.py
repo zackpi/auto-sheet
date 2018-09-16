@@ -1,14 +1,17 @@
 from abjad import *
 
-def display():
-	duration = Duration(1, 4)
-	notes = [Note(pitch, duration) for pitch in range(8)]
-	# [1, 2, 3, 4, 5, 6, 7]
-
-	staff = Staff(notes)
-	show(staff)
+def display(chord_seq, keysig="#", timesig=120):
+    duration = Duration(1, 4)
+    
+    melody = []
+    for timestep, notes in enumerate(chord_seq):
+        chord = Chord()
+        for note in notes:
+            chord.append(note[0] if keysig == "#" else note[1])
+        melody.append(chord)
+    
+    staff = Staff(notes)
+    show(staff)
 
 if __name__ == '__main__':
-	print('duration =', duration)
-	print('notes =', notes)
-	print('show(staff) =', show(staff))
+    display(("cs2", "bb7", "a0"))
