@@ -26,8 +26,17 @@ def freq_to_note(freq):
 
 
 # convert all chunks' peaks to notes
-def convert_chunks_to_notes():
-
+def convert_freqs_to_notes(fft_chunks):
+    note_chunks = []
+    for fft_chunk in fft_chunks:
+    
+        note_chunk = []
+        for peak in fft_chunk:
+            note_chunk.append(freq_to_note(peak))
+        note_chunks.append(note_chunk)
+    
+    return note_chunks
+        
 
 if __name__=="__main__":
     from scipy.misc import electrocardiogram as ec
