@@ -13,5 +13,5 @@ def record(duration=5, fs=40000):
 	return flatten_array(recording)
  
 if __name__ == "__main__":
-	arr = record()
+	arr = record(duration=1/16)
 	print(arr)
